@@ -33,7 +33,7 @@ class MahasiswaController extends Controller
             'nim' => 'required',
             'nama' => 'required',
             'kelas' => 'required',
-            'jurusan' => 'required',
+            'jurusan' => 'required', //required berarti di update
             'no_hp' => 'required',
         ]);
             //fungsi eloquent untuk menambah data
