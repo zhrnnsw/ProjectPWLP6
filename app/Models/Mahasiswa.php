@@ -24,5 +24,7 @@ class Mahasiswa extends Model
         'kelas',
         'jurusan',
         'no_hp',
+        'email',
+        'tanggal_lahir'
     ];
 }

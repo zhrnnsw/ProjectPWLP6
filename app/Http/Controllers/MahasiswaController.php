@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class MahasiswaController extends Controller
 {
@@ -15,10 +17,9 @@ class MahasiswaController extends Controller
     public function index()
     {
         //fungsi eloquent menampilkan data menggunakan pagination
-        $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
-        $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
-        return view('mahasiswa.index', compact('mahasiswa'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        $mahasiswa = Mahasiswa::paginate(5); // Mengambil semua isi tabel
+        $posts = Mahasiswa::orderBy('nim', 'desc')->paginate(6);
+        return view('mahasiswa.index', compact('mahasiswa'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function create()
@@ -35,12 +36,13 @@ class MahasiswaController extends Controller
             'kelas' => 'required',
             'jurusan' => 'required', //required berarti di update
             'no_hp' => 'required',
+            'email' => 'required',
+            'tanggal_lahir' => 'required'
         ]);
             //fungsi eloquent untuk menambah data
         Mahasiswa::create($request->all());
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('mahasiswa.index')
-            ->with('success', 'Mahasiswa Berhasil Ditambahkan');
+        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Ditambahkan');
     }
 
     public function show($nim)
@@ -66,19 +68,26 @@ class MahasiswaController extends Controller
             'kelas' => 'required',
             'jurusan' => 'required',
             'no_hp' => 'required',
+            'email' => 'required',
+            'tanggal_lahir' => 'required'
         ]);
             //fungsi eloquent untuk mengupdate data inputan kita
          Mahasiswa::find($nim)->update($request->all());
             //jika data berhasil diupdate, akan kembali ke halaman utama
-        return redirect()->route('mahasiswa.index')
-            ->with('success', 'Mahasiswa Berhasil Diupdate');
+        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Diupdate');
     }
 
     public function destroy($nim)
     {
         //fungsi eloquent untuk menghapus data
         Mahasiswa::find($nim)->delete();
-        return redirect()->route('mahasiswa.index')
-            -> with('success', 'Mahasiswa Berhasil Dihapus');
+        return redirect()->route('mahasiswa.index')-> with('success', 'Mahasiswa Berhasil Dihapus');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $mahasiswa = Mahasiswa::where('nama', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('mahasiswa.index', compact('mahasiswa'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }
