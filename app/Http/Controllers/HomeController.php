@@ -26,4 +26,6 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('index3',['user'=>$user]);
     }
+
+    
 }
