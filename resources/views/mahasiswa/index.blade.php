@@ -29,7 +29,7 @@
         <th>No Handphone</th>
         <th>Email</th>
         <th>Tanggal Lahir</th>
-        <th width="280px">Action</th>
+        <th width="350px">Action</th>
     </tr>
     @foreach ($mahasiswa as $Mahasiswa)
     <tr>
@@ -47,7 +47,12 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>
+                <a class="btn btn-warning" href="{{ route('nilai',$Mahasiswa->nim) }}">Nilai</a>
+               
             </form>
+            
+                
+            
         </td>
     </tr>
     @endforeach

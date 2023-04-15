@@ -17,3 +17,4 @@ Route::resource('mahasiswa',MahasiswaController::class);
 Route::get('/profile', [HOmeController::class, 'profile'])->name('profile');
 //Route search
 Route::get('/search', [MahasiswaController::class, 'search'])->name('search');
+Route::get('/nilai/{nim}', [MahasiswaController::class, 'nilai'])->name('nilai');
