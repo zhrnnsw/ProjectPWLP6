@@ -30,9 +30,9 @@
                         <td>{{$MahasiswaMataKuliah->nilai}}</td>
                     @endforeach
                     </tr>
-                    
                 </table>
             </div>
         </div>
+        <center><a class="btn btn-success btn-lg" href="{{ route('cetak_pdf',$Mahasiswa->nim) }}" style="margin-top: 20px">Cetak ke PDF</a></center>
     </div>
     @endsection

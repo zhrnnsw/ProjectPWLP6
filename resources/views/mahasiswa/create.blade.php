@@ -17,7 +17,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('mahasiswa.store') }}" id="myForm">
+                <form method="post" action="{{ route('mahasiswa.store') }}" id="myForm" enctype='multipart/form-data'>
                     @csrf
                     <div class="form-group">
                         <label for="nim">Nim</label>
@@ -26,6 +26,10 @@
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="nama" name="nama" class="form-control" id="nama" aria-describedby="nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="Foto">Foto</label>
+                        <input type="file" class="form-control" required="required" name="image" id="Foto" aria-describedby="Foto">
                     </div>
                     <div class="form-group">
                         <label for="kelas">Kelas</label>
@@ -38,18 +42,6 @@
                     <div class="form-group">
                         <label for="jurusan">Jurusan</label>
                         <input type="jurusan" name="jurusan" class="form-control" id="jurusan" aria-describedby="jurusan">
-                    </div>
-                    <div class="form-group">
-                        <label for="no_hp">No Handphone</label>
-                        <input type="no_hp" name="no_hp" class="form-control" id="no_hp" aria-describedby="no_hp">
-                    </div>
-                    <div class="form-group">
-                        <label for="jurusan">Email</label>
-                        <input type="jurusan" name="email" class="form-control" id="email" aria-describedby="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="jurusan">Tanggal Lahir</label>
-                        <input type="jurusan" name="tanggal_lahir" class="form-control" id="tanggal_lahir" aria-describedby="tanggal_lahir">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
